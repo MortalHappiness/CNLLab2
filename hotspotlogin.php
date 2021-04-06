@@ -17,7 +17,7 @@ $userpassword=1;
 
 $loginpath = "/hotspotlogin.php";
 
-# possible Cases:
+# possible Cases:       
 # attempt to login                          login=login
 # 1: Login successful                       res=success
 # 2: Login failed                           res=failed
@@ -50,17 +50,19 @@ $loginpath = "/hotspotlogin.php";
 # $_GET['userurl'];
 # $_GET['timeleft'];
 # $_GET['redirurl'];
+                 # <a href="http://freenet.surething.biz/catalog2/index.php">[HELP]</a> 
+                 # <a href="http://freenet.surething.biz/catalog2/product_info.php?products_id=34">[terms and conditions]</a>  
 
 $titel = '';
 $headline = '';
 $bodytext = '';
 $body_onload = '';
 $footer_text = '<center>
-                  <a href="#">[HELP]</a>
-                  <a href="#">[terms and conditions]</a>
+                  <a href="register.php">[Register]</a>
+ 		  <a href="stat.php" target="_blank">[Stat]</a>
                 </center>';
-
-$footer_textz  = '';
+         
+$footer_textz  = '';                 
 # attempt to login
 if ($_GET['login'] == login) {
   $hexchal = pack ("H32", $_GET['chal']);
@@ -73,9 +75,9 @@ if ($_GET['login'] == login) {
   $newpwd = pack("a32", $_GET['Password']);
   $pappassword = implode ("", unpack("H32", ($newpwd ^ $newchal)));
 
-  $titel = 'Logging in to HotSpot';
-  $headline = 'Logging in to HotSpot';
-  $bodytext = '';
+  $titel = 'Logging in to Team 07 HotSpot'; 
+  $headline = 'Logging in to Team 07 HotSpot';
+  $bodytext = ''; 
   print_header();
   if ((isset ($uamsecret)) && isset($userpassword)) {
     print '<meta http-equiv="refresh" content="0;url=http://' . $_GET['uamip'] . ':' . $_GET['uamport'] . '/logon?username=' . $_GET['UserName'] . '&password=' . $pappassword . '">';
@@ -88,16 +90,16 @@ if ($_GET['login'] == login) {
 # 1: Login successful
 if ($_GET['res'] == success) {
   $result = 1;
-  $titel = 'Logged in to HotSpot';
-  $headline = 'Logged in to HotSpot';
+  $titel = 'Logged in to Team 07 HotSpot';
+  $headline = 'Logged in to Team 07 HotSpot';
   $bodytext = 'Welcome';
   $body_onload = 'onLoad="javascript:popUp(' . $loginpath . '?res=popup&uamip=' . $_GET['uamip'] . '&uamport=' . $_GET['uamport'] . '&timeleft='  . $_GET['timeleft'] . ')"';
   print_header();
   print_body();
-  if ($reply) {
+  if ($reply) { 
     print '<center>' . $reply . '</BR></BR></center>';
   }
-  print '<center><a href="http://' . $_GET['uamip'] . ':' . $_GET['uamport'] . '/logoff">Logout</a></center>';
+  print '<center><a href="http://' . $_GET['uamip'] . ':' . $_GET['uamport'] . '/logoff">[Logout] </a></center>';
   print_footer();
 }
 # 2: Login failed
@@ -117,8 +119,8 @@ if ($_GET['res'] == failed) {
 # 3: Logged out
 if ($_GET['res'] == logoff) {
   $result = 3;
-  $titel = 'Logged out from HotSpot';
-  $headline = 'Logged out from HotSpot';
+  $titel = 'Logged out from Team 07 HotSpot';
+  $headline = 'Logged out from Team 07 HotSpot';
   $bodytext = '<a href="http://' . $_GET['uamip'] . ':' . $_GET['uamport'] . '/prelogin">Login</a>';
   print_header();
   print_body();
@@ -127,8 +129,8 @@ if ($_GET['res'] == logoff) {
 # 4: Tried to login while already logged in
 if ($_GET['res'] == already) {
   $result = 4;
-  $titel = 'Already logged in to HotSpot';
-  $headline = 'Already logged in to HotSpot';
+  $titel = 'Already logged in to Team 07 HotSpot';
+  $headline = 'Already logged in to Team 07 HotSpot';
   $bodytext = '<a href="http://' . $_GET['uamip'] . ':' . $_GET['uamport'] . '/logoff">Logout</a>';
   print_header();
   print_body();
@@ -137,8 +139,8 @@ if ($_GET['res'] == already) {
 # 5: Not logged in yet
 if ($_GET['res'] == notyet) {
   $result = 5;
-  $titel = 'Logged out from HotSpot';
-  $headline = 'Logged out from HotSpot';
+  $titel = 'Logged out from Team 07 HotSpot';
+  $headline = 'Logged out from Team 07 HotSpot';
   $bodytext = 'please log in<br>';
   print_header();
   print_body();
@@ -148,7 +150,7 @@ if ($_GET['res'] == notyet) {
 #11: Popup1
 if ($_GET['res'] == popup1) {
   $result = 11;
-  $titel = 'Logging into HotSpot';
+  $titel = 'Logging into Team 07 HotSpot';
   $headline = 'Logged in to HotSpot';
   $bodytext = 'please wait...';
   print_header();
@@ -159,7 +161,7 @@ if ($_GET['res'] == popup1) {
 if ($_GET['res'] == popup2) {
   $result = 12;
   $titel = 'Do not close this Window!';
-  $headline = 'Logged in to HotSpot';
+  $headline = 'Logged in to Team 07 HotSpot';
   $bodytext = '<a href="http://' . $_GET['uamip'] . ':' . $_GET['uamport'] . '/logoff">Logout</a>';
   print_header();
   print_bodyz();
@@ -168,8 +170,8 @@ if ($_GET['res'] == popup2) {
 #13: Popup3
 if ($_GET['res'] == popup3) {
   $result = 13;
-  $titel = 'Logged out from HotSpot';
-  $headline = 'Logged out from HotSpot';
+  $titel = 'Logged out from Team 07 HotSpot';
+  $headline = 'Logged out from Team 07 HotSpot';
   $bodytext = '<a href="http://' . $_GET['uamip'] . ':' . $_GET['uamport'] . '/prelogin">Login</a>';
   print_header();
   print_body();
@@ -202,7 +204,7 @@ function print_header(){
     var blur = 0;
     var starttime = new Date();
     var startclock = starttime.getTime();
-    var mytimeleft = 0;
+    var mytimeleft = 60;
     function doTime() {
       window.setTimeout( \"doTime()\", 1000 );
       t = new Date();
@@ -228,7 +230,7 @@ function print_header(){
       if(document.all || document.getElementById){
          document.title = title;
       }
-     else {
+     else {   
         self.status = title;
       }
     }
